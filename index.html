@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zhongwei Ren | 任中伟</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #1a1a2e; background: #fafbfc; line-height: 1.7;
+    }
+    a { color: #2563eb; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Layout ── */
+    .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid #e5e7eb;
+    }
+    nav .container {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px;
+    }
+    nav .logo { font-weight: 700; font-size: 1.05rem; color: #1a1a2e; }
+    nav .nav-links a {
+      margin-left: 28px; font-size: .9rem; font-weight: 500; color: #555;
+      transition: color .2s;
+    }
+    nav .nav-links a:hover { color: #2563eb; text-decoration: none; }
+
+    /* ── Hero / Profile ── */
+    .hero {
+      display: flex; align-items: flex-start; gap: 40px;
+      padding: 64px 0 48px;
+    }
+    .hero-photo {
+      flex-shrink: 0; width: 200px; height: 200px;
+      border-radius: 50%; object-fit: cover;
+      object-position: center 20%;
+      border: 3px solid #e5e7eb;
+    }
+    .hero-text h1 { font-size: 2rem; font-weight: 700; margin-bottom: 4px; }
+    .hero-text .cn-name { font-size: 1.1rem; color: #666; margin-bottom: 12px; }
+    .hero-text p { font-size: .97rem; color: #444; margin-bottom: 14px; }
+    .hero-links a {
+      display: inline-block; margin-right: 16px; font-size: .9rem;
+      font-weight: 500;
+    }
+
+    /* ── Section ── */
+    .section { padding: 40px 0; }
+    .section-title {
+      font-size: 1.35rem; font-weight: 700; margin-bottom: 28px;
+      padding-bottom: 8px; border-bottom: 2px solid #e5e7eb;
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    /* ── Experience Timeline ── */
+    .exp-list { display: flex; flex-direction: column; gap: 24px; }
+    .exp-card {
+      display: flex; align-items: flex-start; gap: 20px;
+      background: #fff; border: 1px solid #e5e7eb; border-radius: 12px;
+      padding: 20px 24px; transition: box-shadow .2s;
+    }
+    .exp-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.06); }
+    .exp-logo {
+      flex-shrink: 0; width: 56px; height: 56px;
+      object-fit: contain;
+    }
+    .exp-info h3 { font-size: 1rem; font-weight: 600; }
+    .exp-info .exp-role { font-size: .92rem; color: #555; }
+    .exp-info .exp-date { font-size: .84rem; color: #888; margin-top: 2px; }
+    .exp-info .exp-advisor { font-size: .88rem; color: #666; margin-top: 4px; }
+
+    /* ── Publication Cards ── */
+    .pub-list { display: flex; flex-direction: column; gap: 28px; }
+    .pub-card {
+      display: flex; align-items: stretch; gap: 24px;
+      background: #fff; border: 1px solid #e5e7eb; border-radius: 12px;
+      padding: 20px 24px; transition: box-shadow .2s;
+    }
+    .pub-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.06); }
+    .pub-thumb {
+      flex-shrink: 0; width: 280px; border-radius: 8px;
+      overflow: hidden; background: #000;
+      display: flex; align-items: center;
+    }
+    .pub-thumb video { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block; }
+    .pub-thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block; }
+    .pub-info h3 { font-size: 1.05rem; font-weight: 600; line-height: 1.4; margin-bottom: 6px; }
+    .pub-info .pub-authors { font-size: .88rem; color: #555; margin-bottom: 4px; }
+    .pub-info .pub-authors b { font-weight: 600; color: #1a1a2e; }
+    .pub-info .pub-venue { font-size: .84rem; color: #888; margin-bottom: 8px; }
+    .pub-info .pub-links a {
+      display: inline-block; margin-right: 12px; font-size: .86rem; font-weight: 500;
+    }
+    @media (max-width: 640px) {
+      .pub-card { flex-direction: column; align-items: center; text-align: center; }
+      .pub-thumb { width: 100%; max-width: 320px; }
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center; padding: 32px 0; font-size: .82rem; color: #aaa;
+      border-top: 1px solid #e5e7eb; margin-top: 24px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .hero { flex-direction: column; align-items: center; text-align: center; gap: 24px; }
+      .hero-photo { width: 160px; height: 160px; }
+      .hero-links { justify-content: center; }
+      .exp-card { flex-direction: column; align-items: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════ Navigation ═══════════ -->
+<nav>
+  <div class="container">
+    <span class="logo">Zhongwei Ren</span>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#publications">Publications</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════ Hero ═══════════ -->
+<section class="container hero" id="about">
+  <img class="hero-photo" src="static/image/profile_picture.png" alt="Zhongwei Ren profile photo" />
+  <div class="hero-text">
+    <h1>Zhongwei Ren</h1>
+    <div class="cn-name">任中伟</div>
+    <p>
+      I am a fourth-year PhD student at Institute of Information Science, Beijing Jiaotong University</a>,
+      advised by <a href="https://weiyc.github.io/" target="_blank" rel="noopener">Prof.&nbsp;Yunchao Wei</a>.
+      Currently, I am also a research intern at ByteDance.
+    </p>
+    <p>
+      My research interests include multimodal learning, world model and generative model.
+      Feel free to reach me at <b>maverickrzw@gmail.com</b>.
+    </p>
+    <div class="hero-links">
+      <a href="https://scholar.google.com/citations?user=e5TJm-0AAAAJ&hl=zh-CN" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="https://x.com/maverickrzw" target="_blank" rel="noopener">X / Twitter</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ Experience ═══════════ -->
+<section class="section" id="experience">
+  <div class="container">
+    <div class="section-title">EXPERIENCES</div>
+    <div class="exp-list">
+
+      <!-- Education -->
+      <div class="exp-card">
+        <img class="exp-logo" src="static/image/bjtu_logo_new.png" alt="Beijing Jiaotong University" />
+        <div class="exp-info">
+          <h3>Beijing Jiaotong University</h3>
+          <div class="exp-role">PhD Student</div>
+          <div class="exp-date">Sep 2022 — Present</div>
+          <div class="exp-advisor">Advisor: <a href="https://weiyc.github.io/" target="_blank" rel="noopener">Prof.&nbsp;Yunchao Wei</a></div>
+        </div>
+      </div>
+
+      <!-- ByteDance TikTok -->
+      <div class="exp-card">
+        <img class="exp-logo" src="static/image/bytedance_logo.png" alt="ByteDance" />
+        <div class="exp-info">
+          <h3>ByteDance, TikTok</h3>
+          <div class="exp-role">Research Intern</div>
+          <div class="exp-date">Dec 2025 — Present</div>
+          <div class="exp-advisor">Mentor: <a href="https://lxtgh.github.io/" target="_blank" rel="noopener">Xiangtai Li</a></div>
+        </div>
+      </div>
+
+      <!-- ByteDance Seed -->
+      <div class="exp-card">
+        <img class="exp-logo" src="static/image/bytedance_logo.png" alt="ByteDance" />
+        <div class="exp-info">
+          <h3>ByteDance Seed</h3>
+          <div class="exp-role">Research Intern</div>
+          <div class="exp-date">Jul 2023 — Dec 2025</div>
+          <div class="exp-advisor">Mentor: <a href="https://scholar.google.com/citations?user=Q8iay0gAAAAJ&hl=en" target="_blank" rel="noopener">Jiaoshi Feng</a>, <a href="https://scholar.google.com/citations?user=OEZ816YAAAAJ&hl=en" target="_blank" rel="noopener">Xiaojie Jin</a></div>
+        </div>
+      </div>
+
+      <!-- ByteDance -->
+      <div class="exp-card">
+        <img class="exp-logo" src="static/image/bytedance_logo.png" alt="ByteDance" />
+        <div class="exp-info">
+          <h3>ByteDance, Intelligent Creation</h3>
+          <div class="exp-role">Research Intern</div>
+          <div class="exp-date">Dec 2021 — Jul 2023</div>
+          <div class="exp-advisor">Mentor: <a href="https://scholar.google.com/citations?user=Q8iay0gAAAAJ&hl=en" target="_blank" rel="noopener">Jiaoshi Feng</a>, <a href="https://scholar.google.com/citations?user=OEZ816YAAAAJ&hl=en" target="_blank" rel="noopener">Xiaojie Jin</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ Education ═══════════ -->
+<section class="section" id="education">
+  <div class="container">
+    <div class="section-title">EDUCATION</div>
+    <div class="exp-list">
+
+      <div class="exp-card">
+        <img class="exp-logo" src="static/image/bjtu_logo_new.png" alt="Beijing Jiaotong University" />
+        <div class="exp-info">
+          <h3>Beijing Jiaotong University</h3>
+          <div class="exp-role">PhD Student</div>
+          <div class="exp-date">Sep 2022 — Jun 2027</div>
+          <div class="exp-advisor">Advisor: <a href="https://weiyc.github.io/" target="_blank" rel="noopener">Prof.&nbsp;Yunchao Wei</a></div>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <img class="exp-logo" src="static/image/bjtu_logo_new.png" alt="Beijing Jiaotong University" />
+        <div class="exp-info">
+          <h3>Beijing Jiaotong University</h3>
+          <div class="exp-role">Bachelor's Degree</div>
+          <div class="exp-date">Sep 2018 — Jun 2022</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ Publications ═══════════ -->
+<section class="section" id="publications">
+  <div class="container">
+    <div class="section-title">PUBLICATIONS</div>
+    <p style="font-size:.85rem;color:#888;margin-top:-20px;margin-bottom:20px;">* equal contribution</p>
+    <div class="pub-list">
+
+      <!-- VideoWorld 2 -->
+      <div class="pub-card">
+        <div class="pub-thumb">
+          <video autoplay loop muted playsinline>
+            <source src="static/image/VW2_short.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="pub-info">
+          <h3>VideoWorld 2: Learning Transferable Knowledge from Real-world Videos</h3>
+          <div class="pub-authors"><b>Zhongwei Ren</b>, Yunchao Wei, Xiao Yu, Guixun Luo, Yao Zhao, Bingyi Kang, Jiashi Feng, Xiaojie Jin</div>
+          <div class="pub-venue">CVPR, 2026</div>
+          <div class="pub-links">
+            <a href="https://maverickren.github.io/VideoWorld2.github.io/" target="_blank" rel="noopener">Project Page</a> /
+            <a href="https://arxiv.org/abs/2602.10102" target="_blank" rel="noopener">arXiv</a> /
+            <a href="https://github.com/ByteDance-Seed/VideoWorld/tree/main/VideoWorld2" target="_blank" rel="noopener">Code</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- VideoWorld -->
+      <div class="pub-card">
+        <div class="pub-thumb">
+          <img src="static/image/VW1_profile.png" alt="VideoWorld teaser" />
+        </div>
+        <div class="pub-info">
+          <h3>VideoWorld: Exploring Knowledge Learning from Unlabeled Videos</h3>
+          <div class="pub-authors"><b>Zhongwei Ren</b>, Yunchao Wei, Xun Guo, Yao Zhao, Bingyi Kang, Jiashi Feng, Xiaojie Jin</div>
+          <div class="pub-venue">CVPR, 2025</div>
+          <div class="pub-links">
+            <a href="https://maverickren.github.io/VideoWorld.github.io/" target="_blank" rel="noopener">Project Page</a> /
+            <a href="https://arxiv.org/abs/2501.09781" target="_blank" rel="noopener">arXiv</a> /
+            <a href="https://github.com/ByteDance-Seed/VideoWorld" target="_blank" rel="noopener">Code</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PixelLM -->
+      <div class="pub-card">
+        <div class="pub-thumb">
+          <img src="static/image/PixelLM_profile.png" alt="PixelLM teaser" />
+        </div>
+        <div class="pub-info">
+          <h3>PixelLM: Pixel Reasoning with Large Multimodal Model</h3>
+          <div class="pub-authors"><b>Zhongwei Ren*</b>, Zhicheng Huang*, Yunchao Wei, Yao Zhao, Dongmei Fu, Jiashi Feng, Xiaojie Jin</div>
+          <div class="pub-venue">CVPR, 2024</div>
+          <div class="pub-links">
+            <a href="https://pixellm.github.io/" target="_blank" rel="noopener">Project Page</a> /
+            <a href="https://arxiv.org/abs/2312.02228" target="_blank" rel="noopener">arXiv</a> /
+            <a href="https://github.com/MaverickRen/PixelLM" target="_blank" rel="noopener">Code</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- X-ray Prohibited Item Detection -->
+      <div class="pub-card">
+        <div class="pub-thumb">
+          <img src="static/image/CT_profile.png" alt="X-ray detection teaser" />
+        </div>
+        <div class="pub-info">
+          <h3>Can a Second-View Image Be a Language? Geometric and Semantic Cross-Modal Reasoning for X-ray Prohibited Item Detection</h3>
+          <div class="pub-authors">Chuang Peng, Renshuai Tao, <b>Zhongwei Ren</b>, Xianglong Liu, Yunchao Wei</div>
+          <div class="pub-venue">CVPR, 2026</div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2511.18385" target="_blank" rel="noopener">arXiv</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ Footer ═══════════ -->
+<footer>
+  <div class="container">
+    &copy; 2026 Zhongwei Ren. Last updated April 2026.
+  </div>
+</footer>
+
+</body>
+</html>
